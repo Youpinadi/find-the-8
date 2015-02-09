@@ -1,6 +1,12 @@
 var levelTime = 10;
 var startWidth = 4;
-var level = 1;
+var level = 13;
+var width = startWidth;
+var time = levelTime;
+
+$timer = $('.timer');
+$level = $('.level');
+$field = $('.field');
 
 function field(level)
 {
@@ -25,17 +31,25 @@ function field(level)
     }
   }
   time = levelTime;
+
+  if (level > 20)
+  {
+    $field.addClass('smaller');
+  }
+  else if (level > 13)
+  {
+    $field.addClass('small');
+  }
+  else
+  {
+    $field.removeClass('small smaller');
+  }
+
+  $level.html(level)
   $('.eight').removeClass('show');
   $('.field')
     .html(nines.join(''));
 }
-
-
-var width = startWidth;
-var time = levelTime;
-
-$timer = $('.timer');
-$level = $('.level');
 
 setInterval(updateTimer, 1000);
 function updateTimer()
@@ -51,7 +65,6 @@ function updateTimer()
 function win()
 {
   level++;
-  $level.html(level)
   field(level);
   time += levelTime;
   updateTimer();
@@ -72,7 +85,7 @@ function restart()
 }
 
 
-field(1);
+field(level);
 $(document)
   .on('click', '.eight', win)
   .on('click', '.replay', restart);
