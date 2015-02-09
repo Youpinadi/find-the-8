@@ -1,6 +1,6 @@
 var levelTime = 10;
 var startWidth = 4;
-var level = 13;
+var level = 1;
 var width = startWidth;
 var time = levelTime;
 
